@@ -1,0 +1,9 @@
+@use "reset";
+@use "variables" as v;
+
+@mixin button {
+  padding: 2rem;
+  border-radius: 20px;
+  font-size: v.$smallText;
+  background-color: v.$buttonColor;
+}

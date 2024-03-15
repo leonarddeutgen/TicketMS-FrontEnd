@@ -1,0 +1,12 @@
+@use "reset";
+@use "variables" as v;
+@use "mixin";
+
+.createTicketBtn {
+  @include mixin.button;
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 10px 10px;
+  }
+}

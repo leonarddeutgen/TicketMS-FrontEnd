@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.createTicketBtn {
+  padding: 2rem;
+  border-radius: 20px;
+  font-size: 20px;
+  background-color: rgb(215, 250, 219);
+  transition: 0.3s;
+  cursor: pointer;
+}
+.createTicketBtn:hover {
+  box-shadow: 10px 10px;
+}
+
+#navbar {
+  height: 5vh;
+  background-color: black;
+}
+
+#header {
+  height: 20vh;
+  background-color: rgb(255, 238, 203);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#main {
+  height: 75vh;
+  background-color: rgb(255, 238, 203);
+  border: 1px solid black;
+}/*# sourceMappingURL=style.css.map */

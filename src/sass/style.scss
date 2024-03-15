@@ -1,0 +1,23 @@
+@use "reset";
+@use "variables" as v;
+@use "firstPage";
+@use "mixin";
+
+#navbar {
+  height: 5vh;
+  background-color: black;
+}
+
+#header {
+  height: 20vh;
+  background-color: v.$mainColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#main {
+  height: 75vh;
+  background-color: v.$mainColor;
+  border: 1px solid black;
+}
