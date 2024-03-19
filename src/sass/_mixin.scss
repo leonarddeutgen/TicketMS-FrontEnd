@@ -7,3 +7,16 @@
   font-size: v.$smallText;
   background-color: v.$buttonColor;
 }
+
+@mixin center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin centerColumn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

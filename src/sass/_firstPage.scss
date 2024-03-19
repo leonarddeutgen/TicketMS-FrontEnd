@@ -10,3 +10,59 @@
     box-shadow: 10px 10px;
   }
 }
+
+.ticketsContainer {
+  width: 80%;
+  overflow: scroll;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.ticketBox {
+  height: 15rem;
+  border: 1px solid black;
+  background-color: v.$mainColor;
+  @include mixin.centerColumn;
+}
+
+.navBar {
+  height: 20%;
+  width: 100%;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  &--title {
+    color: black;
+  }
+
+  &--statusBtn {
+    color: black;
+    background-color: white;
+    border-radius: 20px;
+    padding: 0.3rem;
+  }
+}
+
+.textBox {
+  @include mixin.center;
+  height: 60%;
+  width: 100%;
+
+  &--text {
+    color: black;
+    padding: 0.3rem;
+  }
+}
+
+.footer {
+  height: 20%;
+  width: 100%;
+  border: 1px solid black;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
