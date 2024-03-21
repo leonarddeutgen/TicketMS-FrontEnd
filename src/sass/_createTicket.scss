@@ -1,0 +1,64 @@
+@use "reset";
+@use "variables" as v;
+@use "mixin";
+
+.ticketContainer {
+  width: 40rem;
+  height: 30rem;
+  border: 1px solid black;
+  @include mixin.centerColumn;
+}
+
+.containerNavBar {
+  height: 20%;
+  width: 100%;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  &--title {
+    @include mixin.input;
+  }
+
+  &--name {
+    @include mixin.input;
+  }
+
+  &--easy {
+    @include mixin.radioBtn;
+    background-color: v.$mainColor;
+  }
+
+  &--medium {
+    @include mixin.radioBtn;
+  }
+
+  &--hard {
+    @include mixin.radioBtn;
+  }
+}
+
+.textArea {
+  height: 60%;
+  width: 100%;
+  padding: 1rem;
+}
+
+.containerFooter {
+  height: 20%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  &--order {
+    @include mixin.input;
+  }
+  &--item {
+    @include mixin.input;
+  }
+  &--puo {
+    @include mixin.input;
+  }
+}

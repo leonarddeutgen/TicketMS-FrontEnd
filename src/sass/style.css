@@ -18,6 +18,8 @@
 
 .ticketsContainer {
   width: 80%;
+  height: 100%;
+  padding: 1rem;
   overflow: scroll;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -25,13 +27,20 @@
 }
 
 .ticketBox {
-  height: 15rem;
+  height: 20rem;
   border: 1px solid black;
   background-color: rgb(255, 238, 203);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  transition: 0.3s;
+}
+.ticketBox:hover .navBar--edit {
+  display: block;
+  border-radius: 20px;
+  padding: 0.5rem;
+  background-color: white;
 }
 
 .navBar {
@@ -45,11 +54,14 @@
 .navBar--title {
   color: black;
 }
-.navBar--statusBtn {
+.navBar--edit {
+  display: none;
+}
+.navBar--nameTag {
   color: black;
   background-color: white;
   border-radius: 20px;
-  padding: 0.3rem;
+  padding: 0.5rem;
 }
 
 .textBox {
@@ -71,6 +83,89 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+
+.easyColor {
+  background-color: rgb(255, 238, 203);
+}
+
+.mediumColor {
+  background-color: rgb(137, 149, 241);
+}
+
+.hardColor {
+  background-color: rgb(241, 96, 96);
+}
+
+.ticketContainer {
+  width: 40rem;
+  height: 30rem;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.containerNavBar {
+  height: 20%;
+  width: 100%;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.containerNavBar--title {
+  border-radius: 10px;
+  padding: 0.3rem;
+  border: none;
+}
+.containerNavBar--name {
+  border-radius: 10px;
+  padding: 0.3rem;
+  border: none;
+}
+.containerNavBar--easy {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: rgb(255, 238, 203);
+}
+.containerNavBar--medium {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.containerNavBar--hard {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.textArea {
+  height: 60%;
+  width: 100%;
+  padding: 1rem;
+}
+
+.containerFooter {
+  height: 20%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.containerFooter--order {
+  border-radius: 10px;
+  padding: 0.3rem;
+  border: none;
+}
+.containerFooter--item {
+  border-radius: 10px;
+  padding: 0.3rem;
+  border: none;
+}
+.containerFooter--puo {
+  border-radius: 10px;
+  padding: 0.3rem;
+  border: none;
 }
 
 #navbar {

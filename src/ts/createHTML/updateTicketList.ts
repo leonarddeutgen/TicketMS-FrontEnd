@@ -2,10 +2,15 @@ import axios from "axios";
 import { bigContainer } from "../main";
 import { Iticket } from "../models/ITicket";
 
+export let ticketsList: Iticket[];
+
 export const updateTicketList = () => {
+  if (bigContainer) {
+    bigContainer.innerHTML = "";
+  }
   axios.get("http://localhost:3000/api/tickets").then((response) => {
     console.log(response.data);
-    let ticketsList: Iticket[] = response.data;
+    ticketsList = response.data;
     console.log(ticketsList);
     const ticketsContainer = document.createElement("div");
     ticketsContainer.className = "ticketsContainer";
@@ -14,8 +19,9 @@ export const updateTicketList = () => {
       //Create
       const ticketBox = document.createElement("div");
       const ticketNavBar = document.createElement("div");
-      const ticketTitle = document.createElement("p");
-      const ticketStatusBtn = document.createElement("button");
+      const ticketTitle = document.createElement("h4");
+      const editBtn = document.createElement("button");
+      const nameTag = document.createElement("p");
       const ticketTextBox = document.createElement("div");
       const ticketText = document.createElement("p");
       const ticketFooter = document.createElement("div");
@@ -28,7 +34,8 @@ export const updateTicketList = () => {
 
       ticketNavBar.className = "navBar";
       ticketTitle.className = "navBar--title";
-      ticketStatusBtn.className = "navBar--statusBtn";
+      editBtn.className = "navBar--edit";
+      nameTag.className = "navBar--nameTag";
 
       ticketTextBox.className = "textBox";
       ticketText.className = "textBox--text";
@@ -38,20 +45,36 @@ export const updateTicketList = () => {
       ticketItemNo.className = "footer--item";
       ticketPuoNo.className = "footer--puo";
 
+      //Check status on ticket
+      if (ticketsList[i].color === "easy") {
+        ticketNavBar.classList.add("easyColor");
+        ticketFooter.classList.add("easyColor");
+      }
+      if (ticketsList[i].color === "medium") {
+        ticketNavBar.classList.add("mediumColor");
+        ticketFooter.classList.add("mediumColor");
+      }
+      if (ticketsList[i].color === "hard") {
+        ticketNavBar.classList.add("hardColor");
+        ticketFooter.classList.add("hardColor");
+      }
+
       //InnerHTML
       ticketTitle.innerHTML = ticketsList[i].title;
-      ticketStatusBtn.innerHTML = ticketsList[i].color;
+      editBtn.innerHTML = "Edit";
+      nameTag.innerHTML = ticketsList[i].name;
       ticketText.innerHTML = ticketsList[i].description;
-      ticketOrderNo.innerHTML = ticketsList[i].orderNo.toLocaleString();
+      ticketOrderNo.innerHTML = ticketsList[i].orderNo.toString();
       ticketItemNo.innerHTML = ticketsList[i].itemNo.toString();
-      ticketPuoNo.innerHTML = ticketsList[i].name;
+      ticketPuoNo.innerHTML = ticketsList[i].puoNo;
 
       //Append
       ticketsContainer.appendChild(ticketBox);
       //NavBar
       ticketBox.appendChild(ticketNavBar);
       ticketNavBar.appendChild(ticketTitle);
-      ticketNavBar.appendChild(ticketStatusBtn);
+      ticketNavBar.appendChild(editBtn);
+      ticketNavBar.appendChild(nameTag);
       //TextBox
       ticketBox.appendChild(ticketTextBox);
       ticketTextBox.appendChild(ticketText);

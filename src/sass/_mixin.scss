@@ -20,3 +20,14 @@
   justify-content: center;
   flex-direction: column;
 }
+
+@mixin radioBtn {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+@mixin input {
+  border-radius: 10px;
+  padding: 0.3rem;
+  border: none;
+}
