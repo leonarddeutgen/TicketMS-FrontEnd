@@ -1,11 +1,23 @@
 import { bigContainer, headerContainer } from "../main";
-import { updateTicketList } from "./updateTicketList";
+import { editedTicketID, updateTicketList } from "./updateTicketList";
+
+export const titleInput = document.createElement("input");
+export const nameInput = document.createElement("input");
+export const noBiggieStatus = document.createElement("input");
+export const mightBeABiggieStatus = document.createElement("input");
+export const totalyABiggieStatus = document.createElement("input");
+export const textArea = document.createElement("textarea");
+export const containerFooter = document.createElement("div");
+export const orderInput = document.createElement("input");
+export const itemInput = document.createElement("input");
+export const puoInput = document.createElement("input");
 
 export const createNewTicket = () => {
   if (headerContainer && bigContainer) {
     headerContainer.innerHTML = "";
     bigContainer.innerHTML = "";
   }
+  console.log(editedTicketID);
 
   const createTicketBtn = document.createElement("button");
   createTicketBtn.className = "createTicketBtn";
@@ -16,16 +28,16 @@ export const createNewTicket = () => {
   //Ticket Container
   const ticketContainer = document.createElement("div");
   const containerNavBar = document.createElement("div");
-  const titleInput = document.createElement("input");
-  const nameInput = document.createElement("input");
-  const noBiggieStatus = document.createElement("input");
-  const mightBeABiggieStatus = document.createElement("input");
-  const totalyABiggieStatus = document.createElement("input");
-  const textArea = document.createElement("textarea");
-  const containerFooter = document.createElement("div");
-  const orderInput = document.createElement("input");
-  const itemInput = document.createElement("input");
-  const puoInput = document.createElement("input");
+  // const titleInput = document.createElement("input");
+  // const nameInput = document.createElement("input");
+  // const noBiggieStatus = document.createElement("input");
+  // const mightBeABiggieStatus = document.createElement("input");
+  // const totalyABiggieStatus = document.createElement("input");
+  // const textArea = document.createElement("textarea");
+  // const containerFooter = document.createElement("div");
+  // const orderInput = document.createElement("input");
+  // const itemInput = document.createElement("input");
+  // const puoInput = document.createElement("input");
 
   //Classes
   ticketContainer.className = "ticketContainer";
@@ -77,6 +89,7 @@ export const createNewTicket = () => {
     let url = "";
     let method = "";
     let radioBtnValue = "";
+    console.log(editedTicketID);
 
     if (noBiggieStatus.checked) {
       radioBtnValue = "easy";
@@ -101,8 +114,15 @@ export const createNewTicket = () => {
       color: radioBtnValue,
     };
 
-    url = "http://localhost:3000/api/newticket";
-    method = "POST";
+    //Check if we edit our create a new ticket
+    if (editedTicketID === null) {
+      url = "http://localhost:3000/api/newticket";
+      method = "POST";
+    } else {
+      url = "http://localhost:3000/api/editticket/" + editedTicketID.id;
+      method = "PUT";
+      updateTicketList();
+    }
 
     let response = await fetch(url, {
       headers: {

@@ -1,8 +1,18 @@
 import axios from "axios";
 import { bigContainer } from "../main";
 import { Iticket } from "../models/ITicket";
+import {
+  createNewTicket,
+  itemInput,
+  nameInput,
+  orderInput,
+  puoInput,
+  textArea,
+  titleInput,
+} from "./createNewTicket";
 
 export let ticketsList: Iticket[];
+export let editedTicketID: Iticket | null = null;
 
 export const updateTicketList = () => {
   if (bigContainer) {
@@ -67,6 +77,21 @@ export const updateTicketList = () => {
       ticketOrderNo.innerHTML = ticketsList[i].orderNo.toString();
       ticketItemNo.innerHTML = ticketsList[i].itemNo.toString();
       ticketPuoNo.innerHTML = ticketsList[i].puoNo;
+
+      //Edit button AddEventListener
+      editBtn.addEventListener("click", () => {
+        const selectedTicket = ticketsList[i];
+
+        titleInput.value = selectedTicket.title;
+        nameInput.value = selectedTicket.name;
+        textArea.value = selectedTicket.description;
+        orderInput.value = selectedTicket.orderNo.toString();
+        itemInput.value = selectedTicket.itemNo.toString();
+        puoInput.value = selectedTicket.puoNo;
+
+        editedTicketID = selectedTicket;
+        createNewTicket();
+      });
 
       //Append
       ticketsContainer.appendChild(ticketBox);
