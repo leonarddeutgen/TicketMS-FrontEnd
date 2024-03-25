@@ -28,6 +28,7 @@
   &--easy {
     @include mixin.radioBtn;
     background-color: v.$mainColor;
+    accent-color: v.$mainColor;
   }
 
   &--medium {

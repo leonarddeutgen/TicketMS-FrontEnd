@@ -7,7 +7,7 @@ import { updateTicketList } from "./createHTML/updateTicketList";
 export const headerContainer = document.getElementById("header");
 export const bigContainer = document.getElementById("main");
 
-const mainCreateHTML = () => {
+export const mainCreateHTML = () => {
   const createTicketBtn = document.createElement("button");
 
   createTicketBtn.className = "createTicketBtn";

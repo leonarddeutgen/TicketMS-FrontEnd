@@ -31,9 +31,7 @@
   &:hover {
     .navBar--edit {
       display: block;
-      border-radius: 20px;
-      padding: 0.5rem;
-      background-color: white;
+      cursor: pointer;
     }
   }
 }
@@ -51,6 +49,10 @@
   }
   &--edit {
     display: none;
+    border-radius: 20px;
+    padding: 0.5rem;
+    background-color: white;
+    cursor: pointer;
   }
 
   &--nameTag {

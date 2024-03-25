@@ -83,6 +83,24 @@ export const createNewTicket = () => {
   containerFooter.appendChild(itemInput);
   containerFooter.appendChild(puoInput);
 
+  //Change color on container
+  noBiggieStatus.addEventListener("click", () => {
+    ticketContainer.classList.remove("mediumColor");
+    ticketContainer.classList.remove("hardColor");
+    ticketContainer.classList.add("easyColor");
+  });
+  mightBeABiggieStatus.addEventListener("click", () => {
+    ticketContainer.classList.remove("easyColor");
+    ticketContainer.classList.remove("hardColor");
+    ticketContainer.classList.add("mediumColor");
+  });
+  totalyABiggieStatus.addEventListener("click", () => {
+    ticketContainer.classList.remove("easyColor");
+    ticketContainer.classList.remove("easyColor");
+
+    ticketContainer.classList.add("hardColor");
+  });
+
   // Publish ticket to database
   createTicketBtn.addEventListener("click", async (form) => {
     form.preventDefault();

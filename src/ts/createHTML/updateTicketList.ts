@@ -1,5 +1,5 @@
 import axios from "axios";
-import { bigContainer } from "../main";
+import { bigContainer, headerContainer, mainCreateHTML } from "../main";
 import { Iticket } from "../models/ITicket";
 import {
   createNewTicket,
@@ -15,9 +15,11 @@ export let ticketsList: Iticket[];
 export let editedTicketID: Iticket | null = null;
 
 export const updateTicketList = () => {
-  if (bigContainer) {
+  if (bigContainer && headerContainer) {
+    headerContainer.innerHTML = "";
     bigContainer.innerHTML = "";
   }
+  mainCreateHTML();
   axios.get("http://localhost:3000/api/tickets").then((response) => {
     console.log(response.data);
     ticketsList = response.data;
