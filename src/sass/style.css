@@ -213,9 +213,69 @@
   color: black;
 }
 
+@keyframes menu {
+  from {
+    left: -10rem;
+    scale: 0.3;
+  }
+  to {
+    left: 0;
+  }
+}
+.menuBtnBox {
+  width: 5rem;
+  height: 100%;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+.menuBtnBox--bar {
+  width: 60%;
+  height: 2px;
+  border: 2px solid black;
+  border-radius: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.menuBtnBox.active .menuBtnBox--bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menuBtnBox.active .menuBtnBox--bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menuBtnBox.active .menuBtnBox--bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.menuContainer {
+  width: 10rem;
+  height: 20rem;
+  border: 1px solid black;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: white;
+  left: -10rem;
+  scale: 0.3;
+  transition: 0.3s;
+  position: absolute;
+}
+
+.menuContainer.active {
+  left: 0;
+  scale: 1;
+}
+
 #navbar {
   height: 5vh;
   background-color: rgb(255, 238, 203);
+  background-color: white;
+  border: 1px solid black;
 }
 
 #header {

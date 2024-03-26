@@ -10,6 +10,7 @@ import {
   textArea,
   titleInput,
 } from "./createNewTicket";
+import { menu } from "./sideMenu";
 //import { TicketsListEmpty } from "./ifEmptyList";
 
 export let ticketsList: Iticket[];
@@ -22,6 +23,7 @@ export const updateTicketList = () => {
     navBar.innerHTML = "";
   }
   mainCreateHTML();
+  menu();
   axios.get("http://localhost:3000/api/tickets").then((response) => {
     console.log(response.data);
     ticketsList = response.data;
