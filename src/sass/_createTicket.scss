@@ -2,6 +2,25 @@
 @use "variables" as v;
 @use "mixin";
 
+.cancelTicket {
+  padding: 1rem;
+  margin: 1rem;
+  background-color: v.$urgentColor;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    box-shadow: 5px 5px black;
+  }
+}
+
+.deleteTicket {
+  padding: 1rem;
+  background-color: v.$urgentColor;
+  border-radius: 20px;
+}
+
 .ticketContainer {
   width: 40rem;
   height: 30rem;
@@ -9,10 +28,12 @@
   @include mixin.centerColumn;
 }
 
+.spanTitle {
+  position: relative;
+}
 .containerNavBar {
   height: 20%;
   width: 100%;
-  border: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -20,23 +41,23 @@
   &--title {
     @include mixin.input;
   }
-
   &--name {
     @include mixin.input;
   }
 
   &--easy {
     @include mixin.radioBtn;
-    background-color: v.$mainColor;
     accent-color: v.$mainColor;
   }
 
   &--medium {
     @include mixin.radioBtn;
+    accent-color: v.$mediumColor;
   }
 
   &--hard {
     @include mixin.radioBtn;
+    accent-color: v.$urgentColor;
   }
 }
 

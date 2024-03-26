@@ -6,11 +6,11 @@
 
 #navbar {
   height: 5vh;
-  background-color: black;
+  background-color: v.$mainColor;
 }
 
 #header {
-  height: 20vh;
+  height: 15vh;
   background-color: v.$mainColor;
   display: flex;
   align-items: center;
@@ -18,7 +18,7 @@
 }
 
 #main {
-  height: 75vh;
+  height: 80vh;
   background-color: v.$mainColor;
   border: 1px solid black;
   @include mixin.center;

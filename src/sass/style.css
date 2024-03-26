@@ -34,28 +34,30 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  transition: 0.3s;
 }
 .ticketBox:hover .navBar--edit {
-  display: block;
-  border-radius: 20px;
-  padding: 0.5rem;
-  background-color: white;
+  opacity: 100;
 }
 
 .navBar {
   height: 20%;
   width: 100%;
-  border: 1px solid black;
+  border-bottom: 1px solid black;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 1rem;
 }
 .navBar--title {
   color: black;
 }
 .navBar--edit {
-  display: none;
+  opacity: 0;
+  border-radius: 10px;
+  padding: 0.5rem;
+  background-color: rgb(215, 250, 219);
+  transition: 0.3s;
+  cursor: pointer;
 }
 .navBar--nameTag {
   color: black;
@@ -79,10 +81,20 @@
 .footer {
   height: 20%;
   width: 100%;
-  border: 1px solid black;
+  border-top: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+.footer--numberDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-bottom: 1px solid black;
+}
+.footer--none {
+  display: none;
 }
 
 .easyColor {
@@ -97,6 +109,24 @@
   background-color: rgb(241, 96, 96);
 }
 
+.cancelTicket {
+  padding: 1rem;
+  margin: 1rem;
+  background-color: rgb(241, 96, 96);
+  border-radius: 40px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.cancelTicket:hover {
+  box-shadow: 5px 5px black;
+}
+
+.deleteTicket {
+  padding: 1rem;
+  background-color: rgb(241, 96, 96);
+  border-radius: 20px;
+}
+
 .ticketContainer {
   width: 40rem;
   height: 30rem;
@@ -107,36 +137,45 @@
   flex-direction: column;
 }
 
+.spanTitle {
+  position: relative;
+}
+
 .containerNavBar {
   height: 20%;
   width: 100%;
-  border: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
 }
 .containerNavBar--title {
   border-radius: 10px;
-  padding: 0.3rem;
-  border: none;
+  padding: 0.7rem;
+  background-color: transparent;
+  border: 1px solid black;
+  color: black;
 }
 .containerNavBar--name {
   border-radius: 10px;
-  padding: 0.3rem;
-  border: none;
+  padding: 0.7rem;
+  background-color: transparent;
+  border: 1px solid black;
+  color: black;
 }
 .containerNavBar--easy {
   width: 1.5rem;
   height: 1.5rem;
-  background-color: rgb(255, 238, 203);
+  accent-color: rgb(255, 238, 203);
 }
 .containerNavBar--medium {
   width: 1.5rem;
   height: 1.5rem;
+  accent-color: rgb(137, 149, 241);
 }
 .containerNavBar--hard {
   width: 1.5rem;
   height: 1.5rem;
+  accent-color: rgb(241, 96, 96);
 }
 
 .textArea {
@@ -154,27 +193,33 @@
 }
 .containerFooter--order {
   border-radius: 10px;
-  padding: 0.3rem;
-  border: none;
+  padding: 0.7rem;
+  background-color: transparent;
+  border: 1px solid black;
+  color: black;
 }
 .containerFooter--item {
   border-radius: 10px;
-  padding: 0.3rem;
-  border: none;
+  padding: 0.7rem;
+  background-color: transparent;
+  border: 1px solid black;
+  color: black;
 }
 .containerFooter--puo {
   border-radius: 10px;
-  padding: 0.3rem;
-  border: none;
+  padding: 0.7rem;
+  background-color: transparent;
+  border: 1px solid black;
+  color: black;
 }
 
 #navbar {
   height: 5vh;
-  background-color: black;
+  background-color: rgb(255, 238, 203);
 }
 
 #header {
-  height: 20vh;
+  height: 15vh;
   background-color: rgb(255, 238, 203);
   display: flex;
   align-items: center;
@@ -182,7 +227,7 @@
 }
 
 #main {
-  height: 75vh;
+  height: 80vh;
   background-color: rgb(255, 238, 203);
   border: 1px solid black;
   display: flex;

@@ -3,7 +3,7 @@ import { createNewTicket } from "./createHTML/createNewTicket";
 import { updateTicketList } from "./createHTML/updateTicketList";
 
 //Update page
-
+export const navBar = document.getElementById("navbar");
 export const headerContainer = document.getElementById("header");
 export const bigContainer = document.getElementById("main");
 

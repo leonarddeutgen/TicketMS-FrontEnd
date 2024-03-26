@@ -1,4 +1,4 @@
-import { bigContainer, headerContainer } from "../main";
+import { bigContainer, headerContainer, navBar } from "../main";
 import { editedTicketID, updateTicketList } from "./updateTicketList";
 
 export const titleInput = document.createElement("input");
@@ -17,8 +17,47 @@ export const createNewTicket = () => {
     headerContainer.innerHTML = "";
     bigContainer.innerHTML = "";
   }
-  console.log(editedTicketID);
 
+  //Delete btn if we pressed edit
+  if (editedTicketID !== null) {
+    const deleteBtn = document.createElement("button");
+    deleteBtn.className = "deleteTicket";
+    deleteBtn.innerHTML = "Radera ticket";
+
+    deleteBtn.addEventListener("click", async () => {
+      let url = "http://localhost:3000/api/tickets/" + editedTicketID?.id;
+      let method = "DELETE";
+
+      let response = await fetch(url, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: method,
+        body: JSON.stringify(editedTicketID),
+      });
+
+      if (response.status == 404) {
+        console.log("Can't find ticket");
+      }
+      updateTicketList();
+    });
+
+    bigContainer?.appendChild(deleteBtn);
+    console.log("Den är inte null");
+  }
+
+  //Cancel ticket button
+  const cancelTicket = document.createElement("button");
+  cancelTicket.className = "cancelTicket";
+  cancelTicket.innerHTML = "Avbryt";
+
+  cancelTicket.addEventListener("click", () => {
+    updateTicketList();
+  });
+  navBar?.appendChild(cancelTicket);
+
+  //Create tickeet button
   const createTicketBtn = document.createElement("button");
   createTicketBtn.className = "createTicketBtn";
   createTicketBtn.innerHTML = "Publish new ticket";
@@ -83,6 +122,7 @@ export const createNewTicket = () => {
   containerFooter.appendChild(itemInput);
   containerFooter.appendChild(puoInput);
 
+  //AddEventListeners
   //Change color on container
   noBiggieStatus.addEventListener("click", () => {
     ticketContainer.classList.remove("mediumColor");

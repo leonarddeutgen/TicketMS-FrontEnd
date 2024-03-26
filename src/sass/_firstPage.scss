@@ -25,13 +25,12 @@
   height: 20rem;
   border: 1px solid black;
   background-color: v.$mainColor;
+  //border-radius: 20px;
   @include mixin.centerColumn;
-  transition: 0.3s;
 
   &:hover {
     .navBar--edit {
-      display: block;
-      cursor: pointer;
+      opacity: 100;
     }
   }
 }
@@ -39,19 +38,21 @@
 .navBar {
   height: 20%;
   width: 100%;
-  border: 1px solid black;
+  border-bottom: 1px solid black;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 1rem;
 
   &--title {
     color: black;
   }
   &--edit {
-    display: none;
-    border-radius: 20px;
+    opacity: 0;
+    border-radius: 10px;
     padding: 0.5rem;
-    background-color: white;
+    background-color: v.$buttonColor;
+    transition: 0.3s;
     cursor: pointer;
   }
 
@@ -77,11 +78,20 @@
 .footer {
   height: 20%;
   width: 100%;
-  border: 1px solid black;
+  border-top: 1px solid black;
 
   display: flex;
   align-items: center;
   justify-content: space-around;
+
+  &--numberDiv {
+    @include mixin.centerColumn;
+    border-bottom: 1px solid black;
+  }
+
+  &--none {
+    display: none;
+  }
 }
 
 .easyColor {

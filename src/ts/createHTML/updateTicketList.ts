@@ -1,5 +1,5 @@
 import axios from "axios";
-import { bigContainer, headerContainer, mainCreateHTML } from "../main";
+import { bigContainer, headerContainer, mainCreateHTML, navBar } from "../main";
 import { Iticket } from "../models/ITicket";
 import {
   createNewTicket,
@@ -10,20 +10,25 @@ import {
   textArea,
   titleInput,
 } from "./createNewTicket";
+//import { TicketsListEmpty } from "./ifEmptyList";
 
 export let ticketsList: Iticket[];
 export let editedTicketID: Iticket | null = null;
 
 export const updateTicketList = () => {
-  if (bigContainer && headerContainer) {
+  if (bigContainer && headerContainer && navBar) {
     headerContainer.innerHTML = "";
     bigContainer.innerHTML = "";
+    navBar.innerHTML = "";
   }
   mainCreateHTML();
   axios.get("http://localhost:3000/api/tickets").then((response) => {
     console.log(response.data);
     ticketsList = response.data;
-    console.log(ticketsList);
+    // if ((ticketsList = [])) {
+    //   TicketsListEmpty();
+
+    // }
     const ticketsContainer = document.createElement("div");
     ticketsContainer.className = "ticketsContainer";
 
@@ -37,8 +42,11 @@ export const updateTicketList = () => {
       const ticketTextBox = document.createElement("div");
       const ticketText = document.createElement("p");
       const ticketFooter = document.createElement("div");
+      const orderDiv = document.createElement("div");
       const ticketOrderNo = document.createElement("p");
+      const itemDiv = document.createElement("div");
       const ticketItemNo = document.createElement("p");
+      const puoDiv = document.createElement("div");
       const ticketPuoNo = document.createElement("p");
 
       //Classes
@@ -56,6 +64,16 @@ export const updateTicketList = () => {
       ticketOrderNo.className = "footer--order";
       ticketItemNo.className = "footer--item";
       ticketPuoNo.className = "footer--puo";
+
+      orderDiv.className = "footer--numberDiv";
+      itemDiv.className = "footer--numberDiv";
+      puoDiv.className = "footer--numberDiv";
+
+      if (ticketsList[i].puoNo === null) {
+        puoDiv.className = "footer--none";
+        console.log("Kööörs");
+      }
+      console.log(ticketsList[i].puoNo);
 
       //Check status on ticket
       if (ticketsList[i].color === "easy") {
@@ -76,8 +94,11 @@ export const updateTicketList = () => {
       editBtn.innerHTML = "Edit";
       nameTag.innerHTML = ticketsList[i].name;
       ticketText.innerHTML = ticketsList[i].description;
+      orderDiv.innerHTML = "Order No:";
       ticketOrderNo.innerHTML = ticketsList[i].orderNo.toString();
+      itemDiv.innerHTML = "Item No:";
       ticketItemNo.innerHTML = ticketsList[i].itemNo.toString();
+      puoDiv.innerHTML = "Puo No:";
       ticketPuoNo.innerHTML = ticketsList[i].puoNo;
 
       //Edit button AddEventListener
@@ -107,9 +128,12 @@ export const updateTicketList = () => {
       ticketTextBox.appendChild(ticketText);
       //Footer
       ticketBox.appendChild(ticketFooter);
-      ticketFooter.appendChild(ticketOrderNo);
-      ticketFooter.appendChild(ticketItemNo);
-      ticketFooter.appendChild(ticketPuoNo);
+      ticketFooter.appendChild(orderDiv);
+      orderDiv.appendChild(ticketOrderNo);
+      ticketFooter.appendChild(itemDiv);
+      itemDiv.appendChild(ticketItemNo);
+      ticketFooter.appendChild(puoDiv);
+      puoDiv.appendChild(ticketPuoNo);
     }
     bigContainer?.appendChild(ticketsContainer);
   });
