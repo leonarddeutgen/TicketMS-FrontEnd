@@ -44,25 +44,25 @@
   @include mixin.centerColumn;
   gap: 1rem;
 
-  &--category1 {
+  &--category {
     width: 80%;
     padding: 1rem;
     border: 1px solid black;
     @include mixin.center;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+      border: 1px solid white;
+    }
+  }
+
+  &--category:nth-child(1) {
     background-color: v.$buttonColor;
   }
-  &--category2 {
-    width: 80%;
-    padding: 1rem;
-    border: 1px solid black;
-    @include mixin.center;
+  &--category:nth-child(2) {
     background-color: v.$germanColor;
   }
-  &--category3 {
-    width: 80%;
-    padding: 1rem;
-    border: 1px solid black;
-    @include mixin.center;
+  &--category:nth-child(3) {
     background-color: v.$mediumColor;
   }
 }

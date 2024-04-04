@@ -1,4 +1,5 @@
 import { navBar } from "../main";
+import { updateTicketList } from "./updateTicketList";
 
 export const menu = () => {
   console.log("Funktion körs");
@@ -21,18 +22,22 @@ export const menu = () => {
   menuSpan2.className = "menuBtnBox--bar";
   menuSpan3.className = "menuBtnBox--bar";
   menuContainer.className = "menuContainer";
-  doneCategory.className = "menuContainer--category1";
-  germanCategory.className = "menuContainer--category2";
-  totalCategory.className = "menuContainer--category3";
+  doneCategory.className = "menuContainer--category";
+  germanCategory.className = "menuContainer--category";
+  totalCategory.className = "menuContainer--category";
 
   //InnerHtml
   doneText.innerHTML = "Slutförda";
   germanText.innerHTML = "Tyskland";
   totalText.innerHTML = "Pågående";
+
   //AddEventListener
   menuBtnBox.addEventListener("click", () => {
     menuBtnBox.classList.toggle("active");
     menuContainer.classList.toggle("active");
+  });
+  totalCategory.addEventListener("click", () => {
+    updateTicketList();
   });
 
   //Append

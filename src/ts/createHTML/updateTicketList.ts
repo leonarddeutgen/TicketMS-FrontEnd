@@ -93,7 +93,7 @@ export const updateTicketList = () => {
 
       //InnerHTML
       ticketTitle.innerHTML = ticketsList[i].title;
-      editBtn.innerHTML = "Edit";
+      editBtn.innerHTML = "Edit Ticket";
       nameTag.innerHTML = ticketsList[i].name;
       ticketText.innerHTML = ticketsList[i].description;
       orderDiv.innerHTML = "Order No:";
