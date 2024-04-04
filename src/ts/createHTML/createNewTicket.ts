@@ -1,5 +1,5 @@
 import { bigContainer, headerContainer, navBar } from "../main";
-import { editedTicketID, updateTicketList } from "./updateTicketList";
+import { selectedTicket, updateTicketList } from "./updateTicketList";
 
 export const titleInput = document.createElement("input");
 export const nameInput = document.createElement("input");
@@ -19,13 +19,13 @@ export const createNewTicket = () => {
   }
 
   //Delete btn if we pressed edit
-  if (editedTicketID !== null) {
+  if (selectedTicket !== null) {
     const deleteBtn = document.createElement("button");
     deleteBtn.className = "deleteTicket";
     deleteBtn.innerHTML = "Radera ticket";
 
     deleteBtn.addEventListener("click", async () => {
-      let url = "http://localhost:3000/api/tickets/" + editedTicketID?.id;
+      let url = "http://localhost:3000/api/tickets/" + selectedTicket?.id;
       let method = "DELETE";
 
       let response = await fetch(url, {
@@ -34,7 +34,7 @@ export const createNewTicket = () => {
           "Content-Type": "application/json",
         },
         method: method,
-        body: JSON.stringify(editedTicketID),
+        body: JSON.stringify(selectedTicket),
       });
 
       if (response.status == 404) {
@@ -44,7 +44,6 @@ export const createNewTicket = () => {
     });
 
     bigContainer?.appendChild(deleteBtn);
-    console.log("Den är inte null");
   }
 
   //Cancel ticket button
@@ -147,7 +146,6 @@ export const createNewTicket = () => {
     let url = "";
     let method = "";
     let radioBtnValue = "";
-    console.log(editedTicketID);
 
     if (noBiggieStatus.checked) {
       radioBtnValue = "easy";
@@ -173,11 +171,11 @@ export const createNewTicket = () => {
     };
 
     //Check if we edit our create a new ticket
-    if (editedTicketID === null) {
+    if (selectedTicket === null) {
       url = "http://localhost:3000/api/newticket";
       method = "POST";
     } else {
-      url = "http://localhost:3000/api/editticket/" + editedTicketID.id;
+      url = "http://localhost:3000/api/editticket/" + selectedTicket.id;
       method = "PUT";
       updateTicketList();
     }

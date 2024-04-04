@@ -14,7 +14,7 @@ import { menu } from "./sideMenu";
 //import { TicketsListEmpty } from "./ifEmptyList";
 
 export let ticketsList: Iticket[];
-export let editedTicketID: Iticket | null = null;
+export let selectedTicket: Iticket | null = null;
 
 export const updateTicketList = () => {
   if (bigContainer && headerContainer && navBar) {
@@ -22,7 +22,7 @@ export const updateTicketList = () => {
     bigContainer.innerHTML = "";
     navBar.innerHTML = "";
   }
-  editedTicketID = null;
+  //editedTicketID = null;
   mainCreateHTML();
   menu();
   axios.get("http://localhost:3000/api/tickets").then((response) => {
@@ -106,7 +106,7 @@ export const updateTicketList = () => {
 
       //Edit button AddEventListener
       editBtn.addEventListener("click", () => {
-        const selectedTicket = ticketsList[i];
+        selectedTicket = ticketsList[i];
 
         titleInput.value = selectedTicket.title;
         nameInput.value = selectedTicket.name;
@@ -115,7 +115,7 @@ export const updateTicketList = () => {
         itemInput.value = selectedTicket.itemNo.toString();
         puoInput.value = selectedTicket.puoNo;
 
-        editedTicketID = selectedTicket;
+        //editedTicketID = selectedTicket;
         createNewTicket();
       });
 
