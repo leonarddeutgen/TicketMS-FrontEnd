@@ -22,6 +22,7 @@ export const updateTicketList = () => {
     bigContainer.innerHTML = "";
     navBar.innerHTML = "";
   }
+  editedTicketID = null;
   mainCreateHTML();
   menu();
   axios.get("http://localhost:3000/api/tickets").then((response) => {
