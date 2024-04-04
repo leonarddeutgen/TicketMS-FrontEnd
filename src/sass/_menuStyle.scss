@@ -41,6 +41,30 @@
   scale: (0.3);
   transition: 0.3s;
   position: absolute;
+  @include mixin.centerColumn;
+  gap: 1rem;
+
+  &--category1 {
+    width: 80%;
+    padding: 1rem;
+    border: 1px solid black;
+    @include mixin.center;
+    background-color: v.$buttonColor;
+  }
+  &--category2 {
+    width: 80%;
+    padding: 1rem;
+    border: 1px solid black;
+    @include mixin.center;
+    background-color: v.$germanColor;
+  }
+  &--category3 {
+    width: 80%;
+    padding: 1rem;
+    border: 1px solid black;
+    @include mixin.center;
+    background-color: v.$mediumColor;
+  }
 }
 .menuContainer.active {
   left: 0;

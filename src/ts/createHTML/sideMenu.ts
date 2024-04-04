@@ -8,6 +8,12 @@ export const menu = () => {
   const menuSpan2 = document.createElement("span");
   const menuSpan3 = document.createElement("span");
   const menuContainer = document.createElement("div");
+  const doneCategory = document.createElement("div");
+  const doneText = document.createElement("p");
+  const germanCategory = document.createElement("div");
+  const germanText = document.createElement("p");
+  const totalCategory = document.createElement("div");
+  const totalText = document.createElement("p");
 
   //classes
   menuBtnBox.className = "menuBtnBox";
@@ -15,7 +21,14 @@ export const menu = () => {
   menuSpan2.className = "menuBtnBox--bar";
   menuSpan3.className = "menuBtnBox--bar";
   menuContainer.className = "menuContainer";
+  doneCategory.className = "menuContainer--category1";
+  germanCategory.className = "menuContainer--category2";
+  totalCategory.className = "menuContainer--category3";
 
+  //InnerHtml
+  doneText.innerHTML = "Slutförda";
+  germanText.innerHTML = "Tyskland";
+  totalText.innerHTML = "Pågående";
   //AddEventListener
   menuBtnBox.addEventListener("click", () => {
     menuBtnBox.classList.toggle("active");
@@ -28,4 +41,10 @@ export const menu = () => {
   menuBtnBox.appendChild(menuSpan2);
   menuBtnBox.appendChild(menuSpan3);
   navBar?.appendChild(menuContainer);
+  menuContainer.appendChild(doneCategory);
+  doneCategory.appendChild(doneText);
+  menuContainer.appendChild(germanCategory);
+  germanCategory.appendChild(germanText);
+  menuContainer.appendChild(totalCategory);
+  totalCategory.appendChild(totalText);
 };
