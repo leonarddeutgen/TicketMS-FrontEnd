@@ -11,6 +11,7 @@ import {
   titleInput,
 } from "./createNewTicket";
 import { menu } from "./sideMenu";
+import { cleanTicket } from "../functions/cleanTicket";
 //import { TicketsListEmpty } from "./ifEmptyList";
 
 export let ticketsList: Iticket[];
@@ -22,9 +23,12 @@ export const updateTicketList = () => {
     bigContainer.innerHTML = "";
     navBar.innerHTML = "";
   }
-  //editedTicketID = null;
+  //Call functions
+  cleanTicket();
   mainCreateHTML();
   menu();
+  selectedTicket = null;
+
   axios.get("http://localhost:3000/api/tickets").then((response) => {
     console.log(response.data);
     ticketsList = response.data;
