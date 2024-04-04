@@ -17,12 +17,17 @@ export const createNewTicket = () => {
     headerContainer.innerHTML = "";
     bigContainer.innerHTML = "";
   }
+  const buttonContainer = document.createElement("div");
+  const deleteBtn = document.createElement("button");
+  const markAsDone = document.createElement("button");
 
   //Delete btn if we pressed edit
   if (selectedTicket !== null) {
-    const deleteBtn = document.createElement("button");
-    deleteBtn.className = "deleteTicket";
+    buttonContainer.className = "buttonContainer";
+    deleteBtn.className = "buttonContainer--delete";
+    markAsDone.className = "buttonContainer--markAsDone";
     deleteBtn.innerHTML = "Radera ticket";
+    markAsDone.innerHTML = "Markera som klar";
 
     deleteBtn.addEventListener("click", async () => {
       let url = "http://localhost:3000/api/tickets/" + selectedTicket?.id;
@@ -42,8 +47,6 @@ export const createNewTicket = () => {
       }
       updateTicketList();
     });
-
-    bigContainer?.appendChild(deleteBtn);
   }
 
   //Cancel ticket button
@@ -120,6 +123,10 @@ export const createNewTicket = () => {
   containerFooter.appendChild(orderInput);
   containerFooter.appendChild(itemInput);
   containerFooter.appendChild(puoInput);
+  //Mark as done and delete ticket (Append)
+  bigContainer?.appendChild(buttonContainer);
+  buttonContainer?.appendChild(markAsDone);
+  buttonContainer?.appendChild(deleteBtn);
 
   //AddEventListeners
   //Change color on container

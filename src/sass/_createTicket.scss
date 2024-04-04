@@ -15,10 +15,34 @@
   }
 }
 
-.deleteTicket {
-  padding: 1rem;
-  background-color: v.$urgentColor;
-  border-radius: 20px;
+.buttonContainer {
+  width: 40rem;
+  height: 5rem;
+  @include mixin.spaceAround;
+
+  &--delete {
+    padding: 1rem;
+    background-color: v.$urgentColor;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+    &:hover {
+      border: 1px solid white;
+    }
+  }
+
+  &--markAsDone {
+    padding: 1rem;
+    background-color: v.$buttonColor;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+    &:hover {
+      border: 1px solid white;
+    }
+  }
 }
 
 .ticketContainer {

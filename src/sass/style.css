@@ -121,10 +121,34 @@
   box-shadow: 5px 5px black;
 }
 
-.deleteTicket {
+.buttonContainer {
+  width: 40rem;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.buttonContainer--delete {
   padding: 1rem;
   background-color: rgb(241, 96, 96);
   border-radius: 20px;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+}
+.buttonContainer--delete:hover {
+  border: 1px solid white;
+}
+.buttonContainer--markAsDone {
+  padding: 1rem;
+  background-color: rgb(215, 250, 219);
+  border-radius: 20px;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+}
+.buttonContainer--markAsDone:hover {
+  border: 1px solid white;
 }
 
 .ticketContainer {
@@ -320,4 +344,5 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }/*# sourceMappingURL=style.css.map */

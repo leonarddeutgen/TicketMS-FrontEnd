@@ -21,6 +21,12 @@
   flex-direction: column;
 }
 
+@mixin spaceAround {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
 @mixin radioBtn {
   width: 1.5rem;
   height: 1.5rem;

@@ -25,5 +25,5 @@
   height: 80vh;
   background-color: v.$mainColor;
   border: 1px solid black;
-  @include mixin.center;
+  @include mixin.centerColumn;
 }
