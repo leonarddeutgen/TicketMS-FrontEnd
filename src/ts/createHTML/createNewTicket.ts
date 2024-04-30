@@ -13,15 +13,16 @@ export const itemInput = document.createElement("input");
 export const puoInput = document.createElement("input");
 
 export const createNewTicket = () => {
-  if (headerContainer && bigContainer) {
+  if (headerContainer && bigContainer && navBar) {
     headerContainer.innerHTML = "";
     bigContainer.innerHTML = "";
+    navBar.innerHTML = "";
   }
   const buttonContainer = document.createElement("div");
   const deleteBtn = document.createElement("button");
   const markAsDone = document.createElement("button");
 
-  //Delete btn if we pressed edit
+  //Delete btn appears if we pressed edit
   if (selectedTicket !== null) {
     buttonContainer.className = "buttonContainer";
     deleteBtn.className = "buttonContainer--delete";
@@ -30,22 +31,27 @@ export const createNewTicket = () => {
     markAsDone.innerHTML = "Markera som klar";
 
     deleteBtn.addEventListener("click", async () => {
-      let url = "http://localhost:3000/api/tickets/" + selectedTicket?.id;
-      let method = "DELETE";
+      const confirmMessage = "Är du säker på att du vill radera denna ticket?";
+      if (confirm(confirmMessage)) {
+        let url = "http://localhost:3000/api/tickets/" + selectedTicket?.id;
+        let method = "DELETE";
 
-      let response = await fetch(url, {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        method: method,
-        body: JSON.stringify(selectedTicket),
-      });
+        let response = await fetch(url, {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          method: method,
+          body: JSON.stringify(selectedTicket),
+        });
 
-      if (response.status == 404) {
-        console.log("Can't find ticket");
+        if (response.status == 404) {
+          console.log("Can't find ticket");
+        }
+        updateTicketList();
+      } else {
+        createNewTicket();
       }
-      updateTicketList();
     });
   }
 
@@ -69,16 +75,6 @@ export const createNewTicket = () => {
   //Ticket Container
   const ticketContainer = document.createElement("div");
   const containerNavBar = document.createElement("div");
-  // const titleInput = document.createElement("input");
-  // const nameInput = document.createElement("input");
-  // const noBiggieStatus = document.createElement("input");
-  // const mightBeABiggieStatus = document.createElement("input");
-  // const totalyABiggieStatus = document.createElement("input");
-  // const textArea = document.createElement("textarea");
-  // const containerFooter = document.createElement("div");
-  // const orderInput = document.createElement("input");
-  // const itemInput = document.createElement("input");
-  // const puoInput = document.createElement("input");
 
   //Classes
   ticketContainer.className = "ticketContainer";

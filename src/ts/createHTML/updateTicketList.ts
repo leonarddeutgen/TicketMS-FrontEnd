@@ -12,7 +12,6 @@ import {
 } from "./createNewTicket";
 import { menu } from "./sideMenu";
 import { cleanTicket } from "../functions/cleanTicket";
-//import { TicketsListEmpty } from "./ifEmptyList";
 
 export let ticketsList: Iticket[];
 export let selectedTicket: Iticket | null = null;
@@ -32,10 +31,7 @@ export const updateTicketList = () => {
   axios.get("http://localhost:3000/api/tickets").then((response) => {
     console.log(response.data);
     ticketsList = response.data;
-    // if ((ticketsList = [])) {
-    //   TicketsListEmpty();
 
-    // }
     const ticketsContainer = document.createElement("div");
     ticketsContainer.className = "ticketsContainer";
 
@@ -55,7 +51,7 @@ export const updateTicketList = () => {
       const ticketItemNo = document.createElement("p");
       const puoDiv = document.createElement("div");
       const ticketPuoNo = document.createElement("p");
-
+      
       //Classes
       ticketBox.className = "ticketBox";
 
@@ -118,8 +114,6 @@ export const updateTicketList = () => {
         orderInput.value = selectedTicket.orderNo.toString();
         itemInput.value = selectedTicket.itemNo.toString();
         puoInput.value = selectedTicket.puoNo;
-
-        //editedTicketID = selectedTicket;
         createNewTicket();
       });
 
