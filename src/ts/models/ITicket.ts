@@ -7,4 +7,5 @@ export interface Iticket {
   itemNo: number;
   puoNo: string;
   color: string;
+  done: boolean;
 }

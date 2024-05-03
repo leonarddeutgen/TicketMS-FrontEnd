@@ -53,6 +53,48 @@ export const createNewTicket = () => {
         createNewTicket();
       }
     });
+
+    markAsDone.addEventListener("click", async () => {
+      let url = "http://localhost:3000/api/editticket/" + selectedTicket?.id;
+      let method = "PUT";
+
+      let radioBtnValue = "";
+
+      if (noBiggieStatus.checked) {
+        radioBtnValue = "easy";
+      }
+      if (mightBeABiggieStatus.checked) {
+        radioBtnValue = "medium";
+      }
+      if (totalyABiggieStatus.checked) {
+        radioBtnValue = "hard";
+      }
+
+      let ticketValue = {
+        title: titleInput.value,
+        name: nameInput.value,
+        description: textArea.value,
+        orderNo: orderInput.value,
+        itemNo: itemInput.value,
+        puoNo: puoInput.value,
+        color: radioBtnValue,
+        done: true,
+      };
+
+      let response = await fetch(url, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: method,
+        body: JSON.stringify(ticketValue),
+      });
+
+      if (response.status == 422) {
+        console.log("Najs bra");
+      }
+      updateTicketList();
+    });
   }
 
   //Cancel ticket button
@@ -152,15 +194,12 @@ export const createNewTicket = () => {
 
     if (noBiggieStatus.checked) {
       radioBtnValue = "easy";
-      console.log(radioBtnValue);
     }
     if (mightBeABiggieStatus.checked) {
       radioBtnValue = "medium";
-      console.log(radioBtnValue);
     }
     if (totalyABiggieStatus.checked) {
       radioBtnValue = "hard";
-      console.log(radioBtnValue);
     }
 
     let ticketValue = {
@@ -171,6 +210,7 @@ export const createNewTicket = () => {
       itemNo: itemInput.value,
       puoNo: puoInput.value,
       color: radioBtnValue,
+      done: false,
     };
 
     //Check if we edit our create a new ticket

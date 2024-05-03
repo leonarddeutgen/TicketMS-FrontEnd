@@ -1,46 +1,35 @@
 import axios from "axios";
-import { bigContainer, headerContainer, mainCreateHTML, navBar } from "../main";
+import { bigContainer, headerContainer, navBar } from "../main";
 import { Iticket } from "../models/ITicket";
-import {
-  createNewTicket,
-  itemInput,
-  nameInput,
-  orderInput,
-  puoInput,
-  textArea,
-  titleInput,
-} from "./createNewTicket";
 import { menu } from "./sideMenu";
-import { cleanTicket } from "../functions/cleanTicket";
 
-export let ticketsList: Iticket[];
-export let selectedTicket: Iticket | null = null;
-
-export const updateTicketList = () => {
+export const doneTicket = () => {
   if (bigContainer && headerContainer && navBar) {
     headerContainer.innerHTML = "";
     bigContainer.innerHTML = "";
     navBar.innerHTML = "";
   }
-  //Call functions
-  cleanTicket();
-  mainCreateHTML();
   menu();
-  selectedTicket = null;
+  let doneTicketList: Iticket[] = [];
+  let ticketChecker: Iticket[] = [];
 
   axios.get("http://localhost:3000/api/tickets").then((response) => {
-    console.log(response.data);
-    ticketsList = response.data;
+    ticketChecker = response.data;
+
+    for (let i = 0; i < ticketChecker.length; i++) {
+      if (ticketChecker[i].done == true) {
+        doneTicketList.push(ticketChecker[i]);
+      }
+    }
 
     const ticketsContainer = document.createElement("div");
     ticketsContainer.className = "ticketsContainer";
 
-    for (let i = 0; i < ticketsList.length; i++) {
+    for (let i = 0; i < doneTicketList.length; i++) {
       //Create
       const ticketBox = document.createElement("div");
       const ticketNavBar = document.createElement("div");
       const ticketTitle = document.createElement("h4");
-      const editBtn = document.createElement("button");
       const nameTag = document.createElement("p");
       const ticketTextBox = document.createElement("div");
       const ticketText = document.createElement("p");
@@ -57,7 +46,6 @@ export const updateTicketList = () => {
 
       ticketNavBar.className = "navBar";
       ticketTitle.className = "navBar--title";
-      editBtn.className = "navBar--edit";
       nameTag.className = "navBar--nameTag";
 
       ticketTextBox.className = "textBox";
@@ -72,55 +60,40 @@ export const updateTicketList = () => {
       itemDiv.className = "footer--numberDiv";
       puoDiv.className = "footer--numberDiv";
 
-      if (ticketsList[i].puoNo === null) {
+      if (doneTicketList[i].puoNo === null) {
         puoDiv.className = "footer--none";
       }
 
       //Check status on ticket
-      if (ticketsList[i].color === "easy") {
+      if (doneTicketList[i].color === "easy") {
         ticketNavBar.classList.add("easyColor");
         ticketFooter.classList.add("easyColor");
       }
-      if (ticketsList[i].color === "medium") {
+      if (doneTicketList[i].color === "medium") {
         ticketNavBar.classList.add("mediumColor");
         ticketFooter.classList.add("mediumColor");
       }
-      if (ticketsList[i].color === "hard") {
+      if (doneTicketList[i].color === "hard") {
         ticketNavBar.classList.add("hardColor");
         ticketFooter.classList.add("hardColor");
       }
 
       //InnerHTML
-      ticketTitle.innerHTML = ticketsList[i].title;
-      editBtn.innerHTML = "Edit Ticket";
-      nameTag.innerHTML = ticketsList[i].name;
-      ticketText.innerHTML = ticketsList[i].description;
+      ticketTitle.innerHTML = doneTicketList[i].title;
+      nameTag.innerHTML = doneTicketList[i].name;
+      ticketText.innerHTML = doneTicketList[i].description;
       orderDiv.innerHTML = "Order No:";
-      ticketOrderNo.innerHTML = ticketsList[i].orderNo.toString();
+      ticketOrderNo.innerHTML = doneTicketList[i].orderNo.toString();
       itemDiv.innerHTML = "Item No:";
-      ticketItemNo.innerHTML = ticketsList[i].itemNo.toString();
+      ticketItemNo.innerHTML = doneTicketList[i].itemNo.toString();
       puoDiv.innerHTML = "Puo No:";
-      ticketPuoNo.innerHTML = ticketsList[i].puoNo;
-
-      //Edit button AddEventListener
-      editBtn.addEventListener("click", () => {
-        selectedTicket = ticketsList[i];
-
-        titleInput.value = selectedTicket.title;
-        nameInput.value = selectedTicket.name;
-        textArea.value = selectedTicket.description;
-        orderInput.value = selectedTicket.orderNo.toString();
-        itemInput.value = selectedTicket.itemNo.toString();
-        puoInput.value = selectedTicket.puoNo;
-        createNewTicket();
-      });
+      ticketPuoNo.innerHTML = doneTicketList[i].puoNo;
 
       //Append
       ticketsContainer.appendChild(ticketBox);
       //NavBar
       ticketBox.appendChild(ticketNavBar);
       ticketNavBar.appendChild(ticketTitle);
-      ticketNavBar.appendChild(editBtn);
       ticketNavBar.appendChild(nameTag);
       //TextBox
       ticketBox.appendChild(ticketTextBox);

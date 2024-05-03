@@ -1,4 +1,5 @@
 import { navBar } from "../main";
+import { doneTicket } from "./doneTickets";
 import { updateTicketList } from "./updateTicketList";
 
 export const menu = () => {
@@ -36,6 +37,11 @@ export const menu = () => {
     menuBtnBox.classList.toggle("active");
     menuContainer.classList.toggle("active");
   });
+
+  doneCategory.addEventListener("click", () => {
+    doneTicket();
+  });
+
   totalCategory.addEventListener("click", () => {
     updateTicketList();
   });

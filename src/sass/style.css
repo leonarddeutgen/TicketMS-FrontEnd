@@ -109,6 +109,10 @@
   background-color: rgb(241, 96, 96);
 }
 
+.doneColor {
+  background-color: rgb(215, 250, 219);
+}
+
 .cancelTicket {
   padding: 1rem;
   margin: 1rem;
